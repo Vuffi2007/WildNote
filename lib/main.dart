@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 import 'screens/fish_list_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/map_screen.dart';
@@ -16,38 +18,67 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int selectedIndex = 0;
-
-  final List<Widget> widgetOptions = const [
-    FishListScreen(),
-    HomeScreen(),
-    MapScreen(),
-    PhotoScreen(),
-  ];
+  final PageController _pageController = PageController();
 
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
     });
+    _pageController.jumpToPage(index);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-      ),
-      title: 'WildNote',
+      title: "WildNote",
+      theme: ThemeData(colorScheme: blueFishColorScheme),
       home: Scaffold(
-        bottomNavigationBar: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          color: Theme.of(context).colorScheme.primary,
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          children: const[
+            FishListScreen(),
+            HomeScreen(),
+            MapScreen()
+          ],
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: const FloatingActionButton(
           onPressed: (null),
           tooltip: 'Take photo',
-          child: Icon(Icons.camera_alt,),
+          child: Icon(Icons.camera_alt),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          color: blueFishColorScheme.primary,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 5.0,
+          clipBehavior: Clip.antiAlias,
+          child: SizedBox(
+            height: kBottomNavigationBarHeight,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.storage, color: selectedIndex == 0 ? Colors.white : Colors.white54,),
+                  onPressed: () => onItemTapped(0),
+                ),
+                IconButton(
+                  icon: Icon(Icons.home, color: selectedIndex == 1 ? Colors.white : Colors.white54,),
+                  onPressed: () => onItemTapped(1),
+                ),
+                IconButton(
+                  icon: Icon(Icons.map, color: selectedIndex == 2 ? Colors.white : Colors.white54,),
+                  onPressed: () => onItemTapped(2),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
