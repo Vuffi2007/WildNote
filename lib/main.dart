@@ -46,12 +46,12 @@ class _MyAppState extends State<MyApp> {
             MapScreen()
           ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: const FloatingActionButton(
+        floatingActionButton: selectedIndex == 1 ? const FloatingActionButton(
           onPressed: (null),
           tooltip: 'Take photo',
           child: Icon(Icons.camera_alt),
-        ),
+        ) : null,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           color: blueFishColorScheme.primary,
           shape: const CircularNotchedRectangle(),
@@ -68,8 +68,10 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () => onItemTapped(0),
                 ),
                 IconButton(
-                  icon: Icon(Icons.home, color: selectedIndex == 1 ? Colors.white : Colors.white54,),
-                  onPressed: () => onItemTapped(1),
+                  icon: Icon(Icons.home, color: selectedIndex == 1 ? Colors.transparent : Colors.white54,),
+                  splashColor: Colors.transparent,    // removes ripple
+                  highlightColor: Colors.transparent, // removes the gray highlight
+                  onPressed: selectedIndex == 1 ? null : () => onItemTapped(1),
                 ),
                 IconButton(
                   icon: Icon(Icons.map, color: selectedIndex == 2 ? Colors.white : Colors.white54,),
