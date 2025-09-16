@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:wild_note/fish.dart';
 
 import 'colors.dart';
 
@@ -7,7 +9,16 @@ import 'screens/home_screen.dart';
 import 'screens/map_screen.dart';
 import 'screens/photo_screen.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(FishAdapter());
+
+  await Hive.openBox<Fish>('fishBox');
+  
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
