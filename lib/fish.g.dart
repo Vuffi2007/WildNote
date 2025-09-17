@@ -18,9 +18,9 @@ class FishAdapter extends TypeAdapter<Fish> {
     };
     return Fish(
       species: fields[0] as String,
-      weight: fields[1] as double,
-      length: fields[2] as double,
-      imageBytes: fields[3] as Uint8List,
+      weight: fields[1] as double?,
+      length: fields[2] as double?,
+      imagePath: fields[3] as String,
       caughtOn: fields[4] as DateTime,
     );
   }
@@ -36,7 +36,7 @@ class FishAdapter extends TypeAdapter<Fish> {
       ..writeByte(2)
       ..write(obj.length)
       ..writeByte(3)
-      ..write(obj.imageBytes)
+      ..write(obj.imagePath)
       ..writeByte(4)
       ..write(obj.caughtOn);
   }

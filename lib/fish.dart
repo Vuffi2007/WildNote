@@ -11,22 +11,22 @@ class Fish {
   String species;
 
   @HiveField(1)
-  double weight;
+  double? weight;
 
   @HiveField(2)
-  double length;
+  double? length;
 
   @HiveField(3)
-  Uint8List imageBytes;
+  String imagePath;
 
   @HiveField(4)
   DateTime caughtOn;
 
   Fish({
     required this.species,
-    required this.weight,
-    required this.length,
-    required this.imageBytes,
+    this.weight,
+    this.length,
+    required this.imagePath,
     required this.caughtOn,
   });
 }
