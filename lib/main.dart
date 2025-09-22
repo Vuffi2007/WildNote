@@ -1,8 +1,10 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:wild_note/fish.dart';
 
 import 'colors.dart';
+import 'dart:async';
 
 import 'screens/fish_list_screen.dart';
 import 'screens/home_screen.dart';
@@ -16,12 +18,18 @@ Future<void> main() async {
   Hive.registerAdapter(FishAdapter());
 
   await Hive.openBox<Fish>('fishBox');
-  
-  runApp(MyApp());
+
+  final cameras = await availableCameras();
+
+  final firstCamera = cameras.first;
+
+  runApp(MyApp(camera: firstCamera));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final CameraDescription camera;
+
+  const MyApp({super.key, required this.camera});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -51,17 +59,29 @@ class _MyAppState extends State<MyApp> {
               selectedIndex = index;
             });
           },
-          children: const[
+          children: [
             FishListScreen(),
             HomeScreen(),
-            MapScreen()
+            MapScreen(),
+            PhotoScreen(camera: widget.camera),
           ],
         ),
-        floatingActionButton: selectedIndex == 1 ? const FloatingActionButton(
-          onPressed: (null),
-          tooltip: 'Take photo',
-          child: Icon(Icons.camera_alt),
-        ) : null,
+        floatingActionButton: selectedIndex == 1
+            ? Builder(
+                builder: (innerContext) => FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(innerContext).push(
+                      MaterialPageRoute(
+                        builder: (innerContext) =>
+                            PhotoScreen(camera: widget.camera),
+                      ),
+                    );
+                  },
+                  tooltip: 'Take photo',
+                  child: Icon(Icons.camera_alt),
+                ),
+              )
+            : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           color: blueFishColorScheme.primary,
@@ -75,17 +95,29 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.storage, color: selectedIndex == 0 ? Colors.white : Colors.white54,),
+                  icon: Icon(
+                    Icons.storage,
+                    color: selectedIndex == 0 ? Colors.white : Colors.white54,
+                  ),
                   onPressed: () => onItemTapped(0),
                 ),
                 IconButton(
-                  icon: Icon(Icons.home, color: selectedIndex == 1 ? Colors.transparent : Colors.white54,),
-                  splashColor: Colors.transparent,    // removes ripple
-                  highlightColor: Colors.transparent, // removes the gray highlight
+                  icon: Icon(
+                    Icons.home,
+                    color: selectedIndex == 1
+                        ? Colors.transparent
+                        : Colors.white54,
+                  ),
+                  splashColor: Colors.transparent, // removes ripple
+                  highlightColor:
+                      Colors.transparent, // removes the gray highlight
                   onPressed: selectedIndex == 1 ? null : () => onItemTapped(1),
                 ),
                 IconButton(
-                  icon: Icon(Icons.map, color: selectedIndex == 2 ? Colors.white : Colors.white54,),
+                  icon: Icon(
+                    Icons.map,
+                    color: selectedIndex == 2 ? Colors.white : Colors.white54,
+                  ),
                   onPressed: () => onItemTapped(2),
                 ),
               ],
