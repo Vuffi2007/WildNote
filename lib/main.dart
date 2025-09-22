@@ -63,7 +63,6 @@ class _MyAppState extends State<MyApp> {
             FishListScreen(),
             HomeScreen(),
             MapScreen(),
-            PhotoScreen(camera: widget.camera),
           ],
         ),
         floatingActionButton: selectedIndex == 1
