@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:hive/hive.dart';
 
 part 'fish.g.dart';
