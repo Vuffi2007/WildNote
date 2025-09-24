@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: selectedIndex == 1
             ? Builder(
                 builder: (innerContext) => SizedBox(
-                  width: 68, // make the FAB bigger
+                  width: 68,
                   height: 68,
                   child: FloatingActionButton(
                     elevation: 0,
@@ -118,9 +118,9 @@ class _MyAppState extends State<MyApp> {
                         : Colors.white54,
                     size: 28,
                   ),
-                  splashColor: Colors.transparent, // removes ripple effect
+                  splashColor: Colors.transparent,
                   highlightColor:
-                      Colors.transparent, // removes the gray highlight
+                      Colors.transparent,
                   onPressed: selectedIndex == 1 ? null : () => onItemTapped(1),
                 ),
                 IconButton(
