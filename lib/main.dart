@@ -59,36 +59,45 @@ class _MyAppState extends State<MyApp> {
               selectedIndex = index;
             });
           },
-          children: [
-            FishListScreen(),
-            HomeScreen(),
-            MapScreen(),
-          ],
+          children: [FishListScreen(), HomeScreen(), MapScreen()],
         ),
         floatingActionButton: selectedIndex == 1
             ? Builder(
-                builder: (innerContext) => FloatingActionButton(
-                  onPressed: () {
-                    Navigator.of(innerContext).push(
-                      MaterialPageRoute(
-                        builder: (innerContext) =>
-                            PhotoScreen(camera: widget.camera),
+                builder: (innerContext) => SizedBox(
+                  width: 68, // make the FAB bigger
+                  height: 68,
+                  child: FloatingActionButton(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 3,
+                        color: blueFishColorScheme.primary,
                       ),
-                    );
-                  },
-                  tooltip: 'Take photo',
-                  child: Icon(Icons.camera_alt),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    onPressed: () {
+                      Navigator.of(innerContext).push(
+                        MaterialPageRoute(
+                          builder: (innerContext) =>
+                              PhotoScreen(camera: widget.camera),
+                        ),
+                      );
+                    },
+                    tooltip: 'Add new fish',
+                    child: Icon(
+                      Icons.add,
+                      size: 30,
+                    ), // bigger icon to match new size
+                  ),
                 ),
               )
             : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           color: blueFishColorScheme.primary,
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 5.0,
           clipBehavior: Clip.antiAlias,
           child: SizedBox(
-            height: kBottomNavigationBarHeight,
+            height: 30,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -97,6 +106,7 @@ class _MyAppState extends State<MyApp> {
                   icon: Icon(
                     Icons.storage,
                     color: selectedIndex == 0 ? Colors.white : Colors.white54,
+                    size: 28,
                   ),
                   onPressed: () => onItemTapped(0),
                 ),
@@ -106,8 +116,9 @@ class _MyAppState extends State<MyApp> {
                     color: selectedIndex == 1
                         ? Colors.transparent
                         : Colors.white54,
+                    size: 28,
                   ),
-                  splashColor: Colors.transparent, // removes ripple
+                  splashColor: Colors.transparent, // removes ripple effect
                   highlightColor:
                       Colors.transparent, // removes the gray highlight
                   onPressed: selectedIndex == 1 ? null : () => onItemTapped(1),
@@ -116,6 +127,7 @@ class _MyAppState extends State<MyApp> {
                   icon: Icon(
                     Icons.map,
                     color: selectedIndex == 2 ? Colors.white : Colors.white54,
+                    size: 28,
                   ),
                   onPressed: () => onItemTapped(2),
                 ),
