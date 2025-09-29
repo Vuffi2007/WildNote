@@ -108,6 +108,7 @@ class _MyAppState extends State<MyApp> {
                     color: selectedIndex == 0 ? Colors.white : Colors.white54,
                     size: 28,
                   ),
+                  tooltip: "List of fishes",
                   onPressed: () => onItemTapped(0),
                 ),
                 IconButton(
@@ -119,8 +120,8 @@ class _MyAppState extends State<MyApp> {
                     size: 28,
                   ),
                   splashColor: Colors.transparent,
-                  highlightColor:
-                      Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  tooltip: "Home page",
                   onPressed: selectedIndex == 1 ? null : () => onItemTapped(1),
                 ),
                 IconButton(
@@ -129,6 +130,7 @@ class _MyAppState extends State<MyApp> {
                     color: selectedIndex == 2 ? Colors.white : Colors.white54,
                     size: 28,
                   ),
+                  tooltip: "Fish location map",
                   onPressed: () => onItemTapped(2),
                 ),
               ],
