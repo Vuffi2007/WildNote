@@ -23,6 +23,12 @@
       "css": "clock",
       "code": 61463,
       "src": "fontawesome5"
+    },
+    {
+      "uid": "d6c37ff60e02f259af1970f97c9ce537",
+      "css": "fish",
+      "code": 62840,
+      "src": "fontawesome5"
     }
   ]
 }

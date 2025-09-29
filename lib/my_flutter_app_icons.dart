@@ -32,4 +32,5 @@ class MyFlutterApp {
   static const IconData kettlebell = IconData(0xea14, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData clock = IconData(0xf017, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData ruler = IconData(0xf545, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData fish = IconData(0xf578, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
