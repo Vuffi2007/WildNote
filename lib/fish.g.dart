@@ -22,13 +22,15 @@ class FishAdapter extends TypeAdapter<Fish> {
       length: fields[2] as double?,
       imagePath: fields[3] as String,
       caughtOn: fields[4] as DateTime,
+      latitude: fields[5] as double,
+      longitude: fields[6] as double,
     );
   }
 
   @override
   void write(BinaryWriter writer, Fish obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.species)
       ..writeByte(1)
@@ -38,7 +40,11 @@ class FishAdapter extends TypeAdapter<Fish> {
       ..writeByte(3)
       ..write(obj.imagePath)
       ..writeByte(4)
-      ..write(obj.caughtOn);
+      ..write(obj.caughtOn)
+      ..writeByte(5)
+      ..write(obj.latitude)
+      ..writeByte(6)
+      ..write(obj.longitude);
   }
 
   @override

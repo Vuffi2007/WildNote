@@ -20,11 +20,19 @@ class Fish {
   @HiveField(4)
   DateTime caughtOn;
 
+  @HiveField(5)
+  double latitude;
+
+  @HiveField(6)
+  double longitude;
+
   Fish({
     required this.species,
     this.weight,
     this.length,
     required this.imagePath,
     required this.caughtOn,
+    required this.latitude,
+    required this.longitude
   });
 }

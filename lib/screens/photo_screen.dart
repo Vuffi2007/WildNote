@@ -5,6 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
+import 'package:native_exif/native_exif.dart';
 
 import 'package:wild_note/fish.dart';
 
@@ -116,15 +117,24 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
     if (_formKey.currentState!.validate()) {
       final box = Hive.box<Fish>("fishBox");
 
+      final exif = await Exif.fromPath(widget.imagePath);
+      final latLong = await exif.getLatLong();
+
       final fish = Fish(
         species: _speciesController.text,
         weight: double.tryParse(_weightController.text),
         length: double.tryParse(_lengthController.text),
         imagePath: widget.imagePath,
         caughtOn: DateTime.now(),
+        latitude: latLong!.latitude,
+        longitude: latLong!.longitude
+        
       );
 
       await box.add(fish);
+      
+      await exif.close();
+
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Saved ${fish.species} to database')),

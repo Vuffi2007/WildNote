@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
               selectedIndex = index;
             });
           },
-          children: [FishListScreen(), HomeScreen(), MapScreen()],
+          children: [FishListScreen(), HomeScreen(), MapWidget()],
         ),
         floatingActionButton: selectedIndex == 1
             ? Builder(
