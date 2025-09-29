@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "ad407cd2fa15675943c32ece57ea05b5",
+      "css": "ruler",
+      "code": 62789,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "e8a23ea83a43553b7862d8d4b46e2e85",
+      "css": "kettlebell",
+      "code": 59924,
+      "src": "rpgawesome"
+    },
+    {
+      "uid": "57f0dcdd68da5dcbfabcf2c572c01d44",
+      "css": "clock",
+      "code": 61463,
+      "src": "fontawesome5"
+    }
+  ]
+}
