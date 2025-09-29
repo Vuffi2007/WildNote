@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wild_note/my_flutter_app_icons.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:wild_note/screens/photo_screen.dart';
 import 'package:wild_note/fish.dart';
 import 'package:wild_note/colors.dart';
 import 'dart:io';
@@ -28,23 +28,59 @@ class FishListScreen extends StatelessWidget {
 
               return Card(
                 margin: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  leading: Image.file(
-                    File(fish.imagePath),
-                    width: 60,
-                    fit: BoxFit.cover,
-                  ),
-                  title: Text(fish.species),
-                  subtitle: Text(
-                    'Length: ${fish.length?.toStringAsFixed(1)} cm\n'
-                    'Weight: ${fish.weight?.toStringAsFixed(1)} g\n'
-                    'Caught: ${fish.caughtOn.toLocal()}',
-                  ),
-                  isThreeLine: true,
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete, color: blueFishColorScheme.error),
-                    onPressed: () => box.deleteAt(index),
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.file(
+                      File(fish.imagePath),
+                      width: 120, // larger than 60
+                      height: 120,
+                      fit: BoxFit.cover,
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: Text(fish.species),
+                        subtitle: RichText(
+                          text: TextSpan(
+                            children: [
+                              WidgetSpan(
+                                child: Icon(MyFlutterApp.ruler, size: 18),
+                              ),
+                              TextSpan(
+                                text:
+                                    "  ${fish.length?.toStringAsFixed(1)} cm\n",
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                              WidgetSpan(
+                                child: Icon(MyFlutterApp.kettlebell, size: 18),
+                              ),
+                              TextSpan(
+                                text:
+                                    "  ${fish.weight?.toStringAsFixed(1)} g\n",
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                              WidgetSpan(
+                                child: Icon(MyFlutterApp.clock, size: 18),
+                              ),
+                              TextSpan(
+                                text:
+                                    "  ${fish.caughtOn.toLocal().day}-${fish.caughtOn.toLocal().month}-${fish.caughtOn.toLocal().year}",
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ),
+                        isThreeLine: true,
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: blueFishColorScheme.error,
+                          ),
+                          onPressed: () => box.deleteAt(index),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               );
             },
