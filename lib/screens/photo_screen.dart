@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
-import 'package:wild_note/colors.dart';
 import 'package:wild_note/fish.dart';
 
 class PhotoScreen extends StatefulWidget {

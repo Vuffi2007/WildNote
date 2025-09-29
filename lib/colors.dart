@@ -21,10 +21,11 @@ final blueFishColorScheme = ColorScheme(
   error: const Color(0xFFB00020),
   onError: Colors.white,
 
-  surface: const Color(0xFFFAFAFA), // Neutral card/surface
+  surface: const Color.fromARGB(255, 226, 243, 250), // Background
   onSurface: Colors.black,
+  surfaceContainerHigh: const Color.fromARGB(255, 202, 240, 255),
 
-  surfaceContainerHighest: const Color(0xFFBBDEFB), // Subtle ocean blue tint
+  surfaceContainerHighest: const Color.fromARGB(255, 217, 238, 255), // Subtle ocean blue tint
   onSurfaceVariant: Colors.black,
 
   outline: const Color(0xFF90CAF9), // Border/light accents
@@ -33,4 +34,5 @@ final blueFishColorScheme = ColorScheme(
   onInverseSurface: Colors.white,
   inversePrimary: const Color(0xFF81D4FA),
   surfaceTint: const Color(0xFF0277BD),
+
 );
