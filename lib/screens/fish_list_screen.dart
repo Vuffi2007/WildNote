@@ -3,7 +3,6 @@ import 'package:wild_note/my_flutter_app_icons.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wild_note/fish.dart';
 import 'package:wild_note/colors.dart';
-import 'package:wild_note/colors.dart';
 import 'dart:io';
 
 class FishListScreen extends StatelessWidget {
