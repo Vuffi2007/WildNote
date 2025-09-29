@@ -33,6 +33,6 @@ class Fish {
     required this.imagePath,
     required this.caughtOn,
     required this.latitude,
-    required this.longitude
+    required this.longitude,
   });
 }

@@ -21,11 +21,12 @@ final blueFishColorScheme = ColorScheme(
   error: const Color(0xFFB00020),
   onError: Colors.white,
 
-  surface: const Color.fromARGB(255, 226, 243, 250), // Background
+  surface: const Color(0xFFE3F2FD), // Background
   onSurface: Colors.black,
-  surfaceContainerHigh: const Color.fromARGB(255, 202, 240, 255),
+  surfaceContainerHigh: const Color.fromARGB(255, 161, 216, 255),
+  surfaceContainer: const Color.fromARGB(255, 156, 206, 226),
 
-  surfaceContainerHighest: const Color.fromARGB(255, 217, 238, 255), // Subtle ocean blue tint
+  surfaceContainerHighest: const Color(0xFFBBDEFB), // Subtle ocean blue tint
   onSurfaceVariant: Colors.black,
 
   outline: const Color(0xFF90CAF9), // Border/light accents

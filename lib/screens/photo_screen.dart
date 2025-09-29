@@ -126,8 +126,8 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
         length: double.tryParse(_lengthController.text),
         imagePath: widget.imagePath,
         caughtOn: DateTime.now(),
-        latitude: latLong!.latitude,
-        longitude: latLong!.longitude
+        latitude: latLong?.latitude ?? 0.0,
+        longitude: latLong?.longitude ?? 0.0
         
       );
 
