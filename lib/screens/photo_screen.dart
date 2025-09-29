@@ -130,6 +130,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Saved ${fish.species} to database')),
       );
+      Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
 
